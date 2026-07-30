@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-import Dashboard from './pages/Dashboard'
+import Groups from './pages/Groups'
+import GroupDetail from './pages/GroupDetail'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -17,14 +18,22 @@ function AppRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route
-        path="/dashboard"
+        path="/groups"
         element={
           <ProtectedRoute>
-            <Dashboard />
+            <Groups />
           </ProtectedRoute>
         }
       />
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route
+        path="/groups/:id"
+        element={
+          <ProtectedRoute>
+            <GroupDetail />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/" element={<Navigate to="/groups" replace />} />
     </Routes>
   )
 }
