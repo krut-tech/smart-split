@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Groups from './pages/Groups'
 import GroupDetail from './pages/GroupDetail'
+import Admin from './pages/Admin'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -30,6 +31,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <GroupDetail />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <Admin />
           </ProtectedRoute>
         }
       />
